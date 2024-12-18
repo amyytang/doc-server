@@ -46,7 +46,7 @@ def update(c1_value, c2_value, c3_value, column_number, update_value):
                 row[column_number] = update_value
             elif row[0] == c1_value and row[1] == c2_value and row[2] == c3_value:
                 row[column_number] = update_value
-        rows.append(row)
+            rows.append(row)
         file.close()
 
     with open(CSV_FILE, mode='w', newline='') as file:

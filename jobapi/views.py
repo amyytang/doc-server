@@ -34,11 +34,11 @@ def index(request):
         rawfields = kv_pair[1].split(",")
         fields = remove_quotes_in_list(rawfields)
         if len(fields) == 3 :
-            return HttpResponse(job.update(fields[0], None, None, fields[1], fields[2]))
+            return HttpResponse(job.update(fields[0], None, None, int(fields[1]), fields[2]))
         elif len(fields) == 4 :
-            return HttpResponse(job.update(fields[0], fields[1], None, fields[2], fields[3]))
+            return HttpResponse(job.update(fields[0], fields[1], None, int(fields[2]), fields[3]))
         elif len(fields) == 5 :
-            return HttpResponse(job.update(fields[0], fields[1], fields[2], fields[3], fields[4]))
+            return HttpResponse(job.update(fields[0], fields[1], fields[2], int(fields[3]), fields[4]))
         
         return HttpResponse(f"Invalid number of fields for {kv_pair[0]}!", status=400)
     
