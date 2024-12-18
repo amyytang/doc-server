@@ -50,7 +50,7 @@ def update(c1_value, c2_value, c3_value, column_number, update_value):
         file.close()
 
     with open(CSV_FILE, mode='w', newline='') as file:
-        writer = csv.writer(file)   1
+        writer = csv.writer(file)
         writer.writerows(rows)
         file.close()
 
