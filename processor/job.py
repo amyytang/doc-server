@@ -37,35 +37,27 @@ def delete(c1_value, c2_value=None, c3_value=None):
 
 def update(c1_value, c2_value, c3_value, column_number, update_value):
     rows = []
-    if c2_value == None:
-        if c3_value == None:
-            with open(CSV_FILE, mode='r') as file:
-                reader = csv.reader(file)
-                for row in reader:
-                    if row[0] == c1_value:
-                        row[column_number] = update_value
-                    rows.append(row) 
-    elif c3_value == None:
-        with open(CSV_FILE, mode='r') as file:
-            reader = csv.reader(file)
-            for row in reader:
-                if row[0] == c1_value and row[1] == c2_value:
-                    row[column_number] = update_value
-                rows.append(row) 
-    else:
-        with open(CSV_FILE, mode='r') as file:
-            reader = csv.reader(file)
-            for row in reader:
-                if row[0] == c1_value and row[1] == c2_value and row[2] == c3_value:
-                    row[column_number] = update_value
-                rows.append(row)
+    with open(CSV_FILE, mode='r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            if c2_value == None and c3_value == None and row[0] == c1_value:
+                row[column_number] = update_value
+            elif c3_value == None and row[0] == c1_value and row[1] == c2_value:
+                row[column_number] = update_value
+            elif row[0] == c1_value and row[1] == c2_value and row[2] == c3_value:
+                row[column_number] = update_value
+        rows.append(row)
+        file.close()
+
     with open(CSV_FILE, mode='w', newline='') as file:
-        writer = csv.writer(file)
+        writer = csv.writer(file)   1
         writer.writerows(rows)
-def main():
-    insert("China", "Best University", "Zhejiang University")
-    insert("UK", "Company", "DeepMind")
-    #delete("UK")
-    #update("China", "Best University", "Zhejiang University", 2, "Tsinghua University")
-if __name__ == "__main__":
-        main()
+        file.close()
+
+#def main():
+#    insert("China", "Best University", "Zhejiang University")
+#    insert("UK", "Company", "DeepMind")
+#    delete("UK")
+#    update("China", "Best University", "Zhejiang University", 2, "Tsinghua University")
+#if __name__ == "__main__":
+#        main()
